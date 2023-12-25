@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 // import sequelize from "./config/database";
 import moment from "moment";
 import bodyParser from "body-parser";
+import adminRoutes from "./routes/admin/index.route";
 import clientRoutes from "./routes/client/index.route";
+import { systemConfig } from "./config/system";
 
 dotenv.config();
 
@@ -21,6 +23,10 @@ app.set("view engine", "pug");
 
 // App Local Variables
 app.locals.moment = moment;
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
+
+// Routes Admin
+adminRoutes(app);
 
 // Routes Client
 clientRoutes(app);
