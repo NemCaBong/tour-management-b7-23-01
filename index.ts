@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
+import path from "path";
 // import sequelize from "./config/database";
 import moment from "moment";
 import bodyParser from "body-parser";
@@ -21,6 +22,13 @@ app.use(express.static("public"));
 
 app.set("views", "./views");
 app.set("view engine", "pug");
+
+// TinyMCE
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
+// End TinyMCE
 
 // App Local Variables
 app.locals.moment = moment;
